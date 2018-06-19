@@ -29,6 +29,11 @@
     scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:scrollView];
     self.scrollView = scrollView;
+    if (@available(iOS 11.0, *)) {
+        self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     
     UIImage *image = [UIImage imageNamed:@"spot_photograph_banner"];
     //initWithImage会设置imageView.bounds.size==image.size
@@ -43,11 +48,7 @@
     self.scrollView.maximumZoomScale = 10.0;
     self.scrollView.minimumZoomScale = 0.1;
     
-    if (@available(iOS 11.0, *)) {
-        self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    } else {
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
+    
 }
 
 - (void)setFrameWithViewForZooming:(UIView *)view inScrollView:(UIScrollView *)scrollView
